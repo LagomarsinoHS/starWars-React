@@ -1,68 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Star Wars React
 
-## Available Scripts
+Aplicación web de exploración del universo Star Wars construida con React. Consume datos de la [SWAPI](https://swapi.dev/) (Star Wars API) y muestra personajes y planetas con imágenes de [Star Wars Visual Guide](https://starwars-visualguide.com/).
 
-In the project directory, you can run:
+## Qué hace
 
-### `npm start`
+- **Lista de personajes** — Muestra tarjetas con nombre, género, color de pelo y ojos. Incluye paginación (Anterior / Siguiente).
+- **Lista de planetas** — Misma estructura para planetas con clima, gravedad y terreno.
+- **Detalle de personaje** — Vista individual con imagen y atributos (nombre, año de nacimiento, género, altura, etc.).
+- **Detalle de planeta** — Vista individual con clima, gravedad, terreno, diámetro y períodos orbital/rotacional.
+- **Favoritos** — Marca personajes o planetas con el corazón y consúltalos desde el menú desplegable del header.
+- **Navegación** — Rutas con React Router entre home, planetas y páginas de detalle.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Stack tecnológico
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+| Tecnología | Versión |
+|------------|---------|
+| React | 18 |
+| React Router | 5 |
+| Bootstrap | 5 |
+| Font Awesome | 6 |
+| Create React App (react-scripts) | 5 |
+| Node.js | >= 18 |
 
-### `npm test`
+## Arquitectura
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+src/
+├── components/       # App principal y spinner
+├── shared/           # Header, footer, cards reutilizables
+├── views/            # Páginas: personajes, planetas, detalle
+├── store/
+│   ├── flux.js       # Estado global y acciones (fetch a SWAPI)
+│   └── appContext.js # Context API + inyección de store
+└── utils/swapi.js    # Helper para extraer IDs de URLs de SWAPI
+```
 
-### `npm run build`
+El estado global usa un patrón similar a **Flux**: un `store` centralizado con acciones async (`getCharacters`, `getPlanets`, `addFavorite`, etc.) inyectado vía React Context.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## APIs externas
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- **Datos:** `https://swapi.dev/api/people/` y `https://swapi.dev/api/planets/`
+- **Imágenes de personajes:** [Star Wars API (akabab)](https://akabab.github.io/starwars-api/) — Wikia/Fandom
+- **Imágenes de planetas:** placeholder generado con el nombre del planeta
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Cómo levantar el proyecto
 
-### `npm run eject`
+```bash
+npm install
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Abre [http://localhost:3000](http://localhost:3000) en el navegador.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Scripts disponibles
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+| Comando | Descripción |
+|---------|-------------|
+| `npm start` | Servidor de desarrollo |
+| `npm run build` | Build de producción en `build/` |
+| `npm test` | Ejecutar tests |
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Rutas
 
-## Learn More
+| Ruta | Vista |
+|------|-------|
+| `/` | Listado de personajes |
+| `/planetas` | Listado de planetas |
+| `/personaje/:id` | Detalle de un personaje |
+| `/planeta/:id` | Detalle de un planeta |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Notas
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Proyecto educativo creado para practicar React, fetch, Context API y React Router.
+- Requiere conexión a internet para cargar datos e imágenes de las APIs externas.

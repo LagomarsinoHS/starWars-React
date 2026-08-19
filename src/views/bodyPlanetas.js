@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Spinner } from "../components/spinner";
 import  CardPlanetas  from "../shared/cardPlanetas";
 import { Context } from "../store/appContext";
@@ -6,7 +6,7 @@ import Footer from "../shared/footer";
 
 export const BodyPlanetas = () => {
 
-    const { store, actions } = useContext(Context)
+    const { store } = useContext(Context);
 
 
 

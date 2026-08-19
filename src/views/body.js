@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 
 
 export const Body = () => {
-    const { store, actions } = useContext(Context);
+    const { store } = useContext(Context);
 
 
 

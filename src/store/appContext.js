@@ -24,8 +24,10 @@ export const inyectContext = (PassedComponent) => {
 
         /* Uso esto para que al cargar la pagina ya tenga estos datos */
         useEffect(() => {
+            state.actions.loadCharacterImages();
             state.actions.getCharacters("https://swapi.dev/api/people/");
             state.actions.getPlanets("https://swapi.dev/api/planets/");
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
 
         return (
